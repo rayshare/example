@@ -1,0 +1,119 @@
+<html lang="zh">
+
+<head>
+    <script src="./js/pop.js"></script>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            max-height: 370px;
+            height: 370px;
+            width: 300px;
+        }
+
+        span,
+        input,
+        label {
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .container {
+            position: relative;
+            margin: 10px;
+        }
+
+        label {
+            position: absolute;
+            top: 50%;
+            font-size: 14px;
+            left: 10px;
+            transform: translate(0, -50%);
+        }
+
+        input {
+            color: blue;
+            outline: none;
+            font-weight: bold;
+            width: 100%;
+            font-size: 20px;
+            padding-left: 140px;
+            height: 50px;
+        }
+
+        input:focus {
+            border: 2px solid #007bff;
+        }
+
+        #toggle,
+        #active,
+        #clear {
+            height: 50px;
+            border: 1px solid gray;
+            color: white;
+            border-radius: 5px;
+            background-color: blueviolet;
+            cursor: pointer;
+        }
+
+        #active:hover,
+        #toggle:hover,
+        #clear:hover {
+            box-shadow: 0 0 10px black;
+        }
+
+        span {
+            font-size: 16px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .on {
+            background-color: green !important;
+        }
+
+        .disable {
+            background-color: gray !important;
+            pointer-events: none;
+        }
+
+        .disable:hover {
+            box-shadow: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="disable" id="active" value="market">
+            <span>Market</span>
+        </div>
+    </div>
+    <div class="container">
+        <label for="expectInput" class="label">预期百分比(0,∞)</label>
+        <input type="text" id="expectInput" disabled>
+    </div>
+    <div class="container">
+        <label for="profitInput" class="label">止盈百分比(0,∞)</label>
+        <input type="text" id="profitInput" disabled>
+    </div>
+    <div class="container">
+        <label for="lossInput" class="label">止损百分比[-100,0)</label>
+        <input type="text" id="lossInput" disabled>
+    </div>
+    <div class="container">
+        <div class="disable" id="toggle">
+            <span>Stopped</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="disable" id="clear">
+            <span>Clear</span>
+        </div>
+    </div>
+</body>
+
+</html>

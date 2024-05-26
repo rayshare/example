@@ -1,0 +1,39 @@
+{
+    "manifest_version": 3,
+    "name": "AutoTrading",
+    "description": "AutoTrading",
+    "version": "1",
+    "action": {
+        "default_popup": "page/config.html"
+    },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "storage",
+        "management"
+    ],
+    "background": {
+        "service_worker": "scripts/backgrounds/background.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "js": [
+                "scripts/contents/config.js",
+                "scripts/contents/base.js",
+                "scripts/contents/gesture.js",
+                "scripts/contents/strategy.js",
+                "scripts/contents/strategyMA10.js",
+                "scripts/contents/strategyKD.js",
+                "scripts/contents/content2.js",
+                "scripts/contents/content.js"
+            ],
+            "matches": [
+                "*://www.okx.com/zh-hans/trade-swap/doge-usdt-swap",
+                "*://www.okx.com/zh-hans/balance/report-center/unified/order-open"
+            ],
+            "run_at": "document_idle",
+            "world": "ISOLATED"
+        }
+    ]
+}
