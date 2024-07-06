@@ -1,3 +1,4 @@
+# w: 胜赔 d: 平赔 l: 负赔 s: 总投入
 def invest(w, d, l, s):
     _var1 = sorted([w, d, l], reverse=True)
     a = _var1[0]
@@ -13,6 +14,9 @@ def invest(w, d, l, s):
     pb = pb / psum
     pc = pc / psum
 
+    print(f"P: {1 / w / psum} {1 / d / psum} {1 / l / psum}")
+    print(f"R: {psum - 1}")
+
     invc = s * pc
 
     pab = pa + pb
@@ -27,19 +31,27 @@ def invest(w, d, l, s):
     profita = inva - s
     profitb = invb - s
 
+    lable = None
+    odds = None
     if a == w:
-        print(f"w: {w}\nin: {inputa}\nprofit: {profita}\n")
+        lable = "W"
+        odds = w
     elif a == d:
-        print(f"d: {d}\nin: {inputa}\nprofit: {profita}\n")
+        lable = "D"
+        odds = d
     elif a == l:
-        print(f"l: {l}\nin: {inputa}\nprofit: {profita}\n")
+        lable = "L"
+        odds = l
+    print(f"{lable}: {odds} I: {inputa} GET: {profita}")
 
     if b == w:
-        print(f"w: {w}\nin: {inputb}\nprofit: {profitb}\n")
+        lable = "W"
+        odds = w
     elif b == d:
-        print(f"d: {d}\nin: {inputb}\nprofit: {profitb}\n")
+        lable = "D"
+        odds = d
     elif b == l:
-        print(f"l: {l}\nin: {inputb}\nprofit: {profitb}\n")
-
-
-invest(3.05, 3.40, 1.97, 100)
+        lable = "L"
+        odds = l
+    print(f"{lable}: {w} I: {inputb} GET: {profitb}")
+    print()
