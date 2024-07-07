@@ -1,57 +1,45 @@
-# w: 胜赔 d: 平赔 l: 负赔 s: 总投入
-def invest(w, d, l, s):
-    _var1 = sorted([w, d, l], reverse=True)
-    a = _var1[0]
-    b = _var1[1]
-    c = _var1[2]
+#真实概率计算
+def P(w, d, l):
 
-    pa = 1 / a
-    pb = 1 / b
-    pc = 1 / c
-    psum = pa + pb + pc
+    _pw = 1 / w
+    _pd = 1 / d
+    _pl = 1 / l
+    psum = _pw + _pd + _pl
 
-    pa = pa / psum
-    pb = pb / psum
-    pc = pc / psum
+    pw = _pw / psum
+    pd = _pd / psum
+    pl = _pl / psum
 
-    print(f"P: {1 / w / psum} {1 / d / psum} {1 / l / psum}")
-    print(f"R: {psum - 1}")
+    return (round(pw, 2), round(pd, 2), round(pl, 2), round(psum - 1, 2))
 
-    invc = s * pc
+# pc all in A
+def InvestA(pa, pb, pc, S):
+    a = S * pa
+    b = S * pb
+    c = S * pc
+    return (a + c, b)
 
-    pab = pa + pb
-    _pa = pb / pab
-    _pb = pa / pab
+# pc all in B
+def InvestB(pa, pb, pc, S):
+    a = S * pa
+    b = S * pb
+    c = S * pc
+    return (a, b + c)
 
-    inputa = s * pa + invc * _pa
-    inputb = s * pb + invc * _pb
-    inva = inputa * a
-    invb = inputb * b
+# pc all in AB
+def InvestAB(pa, pb, pc, S):
+    a = S * pa
+    b = S * pb
+    c = S * pc
+    rateA = a / (a + b)
+    rateB = b / (a + b)
+    return (a + c * (rateA), b + c * (rateB))
 
-    profita = inva - s
-    profitb = invb - s
-
-    lable = None
-    odds = None
-    if a == w:
-        lable = "W"
-        odds = w
-    elif a == d:
-        lable = "D"
-        odds = d
-    elif a == l:
-        lable = "L"
-        odds = l
-    print(f"{lable}: {odds} I: {inputa} GET: {profita}")
-
-    if b == w:
-        lable = "W"
-        odds = w
-    elif b == d:
-        lable = "D"
-        odds = d
-    elif b == l:
-        lable = "L"
-        odds = l
-    print(f"{lable}: {odds} I: {inputb} GET: {profitb}")
-    print()
+# pc all in BA
+def InvestBA(pa, pb, pc, S):
+    a = S * pa
+    b = S * pb
+    c = S * pc
+    rateA = a / (a + b)
+    rateB = b / (a + b)
+    return (round(a + c * (rateB)), round(b + c * (rateA)))
