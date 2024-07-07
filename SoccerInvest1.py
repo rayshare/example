@@ -53,5 +53,5 @@ def invest(w, d, l, s):
     elif b == l:
         lable = "L"
         odds = l
-    print(f"{lable}: {w} I: {inputb} GET: {profitb}")
+    print(f"{lable}: {odds} I: {inputb} GET: {profitb}")
     print()
