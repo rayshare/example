@@ -30,6 +30,10 @@ options.add_argument('start-maximized')
 options.add_argument('disable-blink-features=AutomationControlled')
 
 driver = webdriver.Chrome(service=service, options=options)
+# driver.execute_cdp_cmd(
+#     "Page.addScriptToEvaluateOnNewDocument",
+#     {"source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"},
+# )
 
 driver.get("https://bot.sannysoft.com/")
 time.sleep(600)
