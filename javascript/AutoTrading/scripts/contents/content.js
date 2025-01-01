@@ -10,8 +10,7 @@ const revoke_suffix = '/balance/report-center/unified/order-open'; //自动订�
 async function observeAssets() {
     let panel = await listenElement('observeAssets: leftForm', document, () => document.getElementById('leftPoForm'));
     let span = await listenElement('observeAssets: span', panel, () => {
-        return panel.querySelector('div[class="avail-display-container"]')
-            ?.querySelectorAll('span[class^="index_value"]')[0];
+        return panel.querySelector('div[class="avail-display-container"]')?.querySelectorAll('span[class^="index_value"]')[0];
     });
     f_assets = () => {
         return Number(span.textContent.replaceAll(/\s*usdt/gi, ''));
